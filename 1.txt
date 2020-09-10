@@ -1,0 +1,256 @@
+//PROGRAMMER Table
+
+
+create table PROGRAMMER (EmpNo int(5) UNIQUE, LastName varchar(30), FirstName varchar(30), HireDate date, ProjId varchar(5),Language varchar(15), TaskNo int(2), Privilage varchar(25));
+
+insert into PROGRAMMER values (201,"Gupta","Saurav","1/1/95","NPR","VB",52,"Secret");
+
+insert into PROGRAMMER values (390,"Ghosh","Pinky","1/05/93","KCW","Java",11,"Top Secret");
+
+insert into PROGRAMMER values (789,"Agarwal","Praveen","08/31/98","Rnc","VB",11,"Secret");
+
+insert into PROGRAMMER values (134,"Chaudhury","Supriyo","07/15/95","TIPPS","C++",52,"Secret");
+
+insert into PROGRAMMER values (896,"Jha","Ranjit","06/15/97","KCW","Java",10,"TopSecret");
+
+insert into PROGRAMMER values (345,"John","Peter","11/15/99","TIPPS","Java",null,52);
+
+insert into PROGRAMMER values (563,"Anderson","Andy","08/15/94","NITTS","C++",89,"confidential");
+
+select * from PROGRAMMER;
+
+update PROGRAMMER set ProjId="NITTS",Language= "C++" where EmpNo=201;
+
+select * from PROGRAMMER;
+
+delete from PROGRAMMER where EmpNo=134;
+
+select * from PROGRAMMER;
+
+//WEATHER Table
+
+create table WEATHER (City varchar(20),State varchar(30),High int,Low int);
+insert into WEATHER values ("Calcutta","West Bengal",105,90);
+insert into WEATHER values ("Trivandrum","Kerala",101,92);
+insert into WEATHER values ("Mumbai","Maharashtra",88,69);
+insert into WEATHER values ("Bangalore","Karnataka",77,60);
+insert into WEATHER values ("New Delhi",null,80,72);
+select * from WEATHER;
+ALTER table WEATHER ADD climate varchar(10);
+update WEATHER set climate="sunny" where City="Calcutta";
+update WEATHER set climate="rainy" where City="Trivandrum";
+update WEATHER set climate="sunny" where City="Mumbai";
+update WEATHER set climate="snow" where City="Bangalore";
+update WEATHER set climate="cloudy" where City="New Delhi";
+select * from WEATHER;
+drop table WEATHER;
+
+//BOOKS Table
+
+create table BOOKS (BookId int ,Title varchar,TopicId varchar,PublisherName varchar,Placeof Publication varchar,Price int,PurchaseDate date,ShelfNo varchar);
+insert into BOOKS values (8293,"DBMS","DB1","Prentice Hall","Mumbai",255,"1/1/95","S11");
+insert into BOOKS values (5645,"DBMS","DB1","Pearson Education","Mumbai",655,"1/05/93","S12");
+insert into BOOKS values (6565,"C","C1","TMH","Mumbai",840,"08/31/98","S66");
+insert into BOOKS values (6567,"C++","Cplus1","ABC Publishers","Delhi",300,"07/15/95","S77");
+insert into BOOKS values (4576,"JAVA","JAVA1","Guru Govind Publications","Delhi",500,"06/15/97","S87");
+insert into BOOKS values (3433,"OOPS","OOPS1","Dave Publishers","Pune",600,"11/15/99","S56");
+insert into BOOKS values (4655,"SAD","SAD1","Sajan Publications","Cochin",700,"08/15/94","S76");
+select * from BOOKS;
+update BOOKS set ShelfNo="S10" where Title="DBMS";
+select * from BOOKS;
+
+//CUSTOMER  Table
+
+create table CUSTOMER (CUSTID int, FNAME varchar(30), LNAME varchar(30), ADDRESS varchar(50),PHONENO  int Not Null, CITY varchar(20), COUNTRY varchar(20), DATEFIRSTPURCHASED date, SUPPLIERID int,PRIMARY KEY (CUSTID),
+ CONSTRAINT FK_SupplierId FOREIGN KEY (SUPPLIERID)
+ REFERENCES SUPPLIER(SUPPLIERID));
+
+
+
+insert into CUSTOMER values (1001,"Das","Jeyaseelan","119, park Avenue, II street",9841093428,"Coimbatore","India","2004-01-10",1);
+
+
+
+insert into CUSTOMER values (2001,"Gopi","Govindraj","241, I floor, Kamaraj street , Madippakkam",9444124590,"Chennai","India","2005-03-25",4);
+
+
+
+insert into CUSTOMER values (1201,"Dilip","Kishore","43, II Avenue, Anna Nagar",9997234534,"Bangalore","India","2004-08-20",2);
+
+
+
+insert into CUSTOMER values (1300,"Aanand","Chowdhury","42/1 sector 1, II Street",9841054348,"Bangalore","India","2005-05-15",2);
+
+
+
+insert into CUSTOMER values (1220,"Chandra","Nagarajan","83, lal bagh",98410672356,"Bangalore","India","2006-02-12",4);
+
+
+
+insert into CUSTOMER values (1221,"Abhishek","Kumar","13,kishori park",94447623901,"Chennai","India","2004-05-15",1);
+
+
+
+insert into CUSTOMER values (1320,"Nikhil","Pandit","218, alwaanya street",94448923091,"Salem","India","2006-04-21",3);
+
+
+
+insert into CUSTOMER values (1222,"Meenu","Monica","C11, church road",98410563421,"Trichy","India","2004-08-30",1);
+
+
+
+insert into CUSTOMER values (1225,"Pavan","Kumar","128/A, North Mada Street",99934782103,"maduari","India","2004-08-18",4);
+
+
+
+select * from CUSTOMER;
+
+
+//SUPPLIER Table
+
+
+
+
+create table SUPPLIER (SUPPLIERID int, SNAME varchar(30), SCITY varchar(30), SPHONE int Not Null, EMAIL varchar(50) Unique, PRIMARY KEY(SUPPLIERID));
+
+
+
+insert into SUPPLIER values (1,"Dilip","Chennai",8999900000,"dilip@abc.co.in");
+
+
+
+insert into SUPPLIER values (2,"Tarun","Madurai",8999911111,"tarun@xyz.com");
+
+
+
+insert into SUPPLIER values (3,"Naresh","Coimbatore",8999922222,"g.naresh@xyzl.com");
+
+
+
+insert into SUPPLIER values (4,"Ganesan","Trichy",8999933333,"Ganesan_83@ijk.com");
+
+
+
+select * from SUPPLIER;
+
+
+
+
+
+//ORDERS Table
+
+create table ORDERS (ORDERID int , ORDERDATE date, CUSTID int, QUANTITY int, ITEMID int,PRIMARY KEY (ORDERID),CONSTRAINT FK_ItemId FOREIGN KEY (ITEMID) REFERENCES SUPPLIER(ITEMID));
+
+
+
+insert into ORDERS values (1,"12-01-2004",1001,30,25);
+
+
+
+insert into ORDERS values (2,"6-05-2005",1202,38,24);
+
+
+
+insert into ORDERS values (3,"16-12-2006",1220,10,22);
+
+
+
+insert into ORDERS values (4,"21-05-2004",1233,12,21);
+
+
+
+select * from ORDERS;
+
+//ITEMS Table
+
+
+
+
+
+
+create table ITEMS (ITEMID int, ITEMNAME varchar(35), SUPPLIERID int , MINQTY int, MAXQTY int,PRICE float numeric(5,2),PRIMARY KEY (ITEMID),CONSTRAINT FK_SupplierId FOREIGN KEY (SUPPLIERID)
+ REFERENCES SUPPLIER(SUPPLIERID));
+
+
+
+
+insert into ITEMS values (20,"Pears Soap",4,7,20,30.00);
+
+
+
+insert into ITEMS values (21,"V.V.D. Coconut oil 200 ml",2,8,15,79.00);
+
+
+
+insert into ITEMS values (22,"Ponds powder 400g",3,6,25,106.00);
+
+
+
+insert into ITEMS values (23,"Reynolds pen- blue",1,10,30,15.00);
+
+
+
+insert into ITEMS values (24,"Reynolds pen- black",1,10,30,16.00);
+
+
+
+insert into ITEMS values (25,"Mysore sandal soap",4,7,25,25.00);
+
+
+
+insert into ITEMS values (26,"Fair & lovely cream- 50g",3,5,15,55.00);
+
+
+
+insert into ITEMS values (27,"Rexono deo spary",2,5,20,100.00);
+
+
+
+insert into ITEMS values (28,"Dove soap",4,7,15,85.00);
+
+
+
+select * from ITEMS;
+
+
+
+
+
+select * from CUSTOMER where CITY="Chennai";
+
+
+
+select * from CUSTOMER where SUPPLIERID=2;
+
+
+
+select CUSTOMER.CUSTID, CUSTOMER.FNAME, CUSTOMER.LNAME from CUSTOMER where DATEFIRSTPURCHASED > "2005-01-31" ;
+
+
+
+select * from SUPPLIER where SCITY="Coimbatore";
+
+
+
+select * from SUPPLIER where SNAME LIKE "G%";
+
+
+
+select * from CUSTOMER where LNAME NOT LIKE "%e%";
+
+
+select * from CUSTOMER where DATEFIRSTPURCHASED > "2005-12-31" and DATEFIRSTPURCHASED < "2007-01-01";
+
+
+select * from ORDERS where QUANTITY<35;
+
+
+
+select * from ITEMS where SUPPLIERID=4;
+
+
+
+select * from ITEMS  where SUPPLIERID=3 and MINQTY >7 order by ITEMID;
+
+
+
